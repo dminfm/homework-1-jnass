@@ -27,6 +27,8 @@ Use the help menu to explore what the series `gold`, `woolyrnq` and `gas` repres
 
 ```{r, echo=TRUE, cache=TRUE, eval=FALSE}
 help(gold)
+help(woolyrnq)
+help(gas)
 # to do
 
 ```
@@ -36,6 +38,9 @@ Use `autoplot` to plot each of these in separate plots.
 ```{r, echo=TRUE, cache=TRUE}
 # to do
 
+autoplot(gold)
+autoplot(woolyrnq)
+autoplot(gas)
 ```
 
 **What is the frequency of each commodity series?**
@@ -43,7 +48,10 @@ Hint: apply the `frequency()` function.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+help("frequency")
+frequency(gold)
+frequency(woolyrnq)
+frequency(gas)
 ```
 
 Use `which.max()` to spot the outlier in the `gold` series. 
@@ -51,6 +59,11 @@ Use `which.max()` to spot the outlier in the `gold` series.
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
+
+help("which.max")
+which.max(gold)
+which.max(woolyrnq)
+which.max(gas)
 
 ```
 
@@ -75,14 +88,14 @@ Construct time series plots of each of the three series and use 'facets = TRUE' 
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(mytimeseries, facets=TRUE)
 ```
 
 Check what happens when you don't include `facets=TRUE`.
 
 ```{r, echo=TRUE, cache=TRUE, dependson="exmyts"}
 # to do
-
+autoplot(mytimeseries, facets=FALSE)
 ```
 
 # Exercise 3
@@ -100,20 +113,26 @@ The second argument (`skip=1`) is required because the Excel sheet has two heade
 Select one of the time series as follows (but replace the column name with your own chosen column):
 
 ```{r, echo=TRUE, cache=TRUE}
-myts <- ts(retaildata[, "A3349873A"], frequency = 12, start = c(1982, 4))
+myts <- ts(retaildata[, "A3349627V"], frequency = 12, start = c(1982, 4))
 ```
 
 Explore your chosen retail time series using the following functions: `autoplot`, `ggseasonplot`, `ggsubseriesplot`, `gglagplot`, `ggAcf`
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
-
+autoplot(myts)
+ggseasonplot(myts)
+ggsubseriesplot(myts)
+gglagplot(myts,lags=4)
+ggAcf(myts)
 ```
 
 **Can you spot any seasonality, cyclicity and trend? What do you learn about the series?**
 
 Your answer:
-
+Trend: Positiv wachsender Trend
+Zyklisch: Jedes Jahr wiederkehrend 
+Sesonalität: Schwierig aus den Grafiken zu erkennen
 
 # Exercise 4
 Create time plots of the following time series: goog, writing, fancy, a10, h02.
@@ -123,7 +142,19 @@ Create time plots of the following time series: goog, writing, fancy, a10, h02.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 # to do
+autoplot(goog)
+autoplot(writing)
+autoplot(fancy)
+autoplot(a10)
+autoplot(h02)
+#gglagplot(goog)
+#ggAcf(goog)
 
+#autoplot(writing)
+#ggseasonplot(writing)
+#ggsubseriesplot(writing)
+#gglagplot(writing)
+#ggAcf(writing)
 ```
 
 Use the `ggseasonplot` and `ggsubseriesplot` functions to explore the seasonal patterns in the following time series:  `writing`, `fancy`, `a10`, `h02`.
@@ -135,38 +166,53 @@ Use the `ggseasonplot` and `ggsubseriesplot` functions to explore the seasonal p
 ```{r, echo=TRUE}
 # writing
 # to do
-
+ggseasonplot(writing)
+ggsubseriesplot(writing)
 ```
 
 Your answer:
+Es gibt eine Sesonale Komponente, die immer im August des Jahres statt findet.Ich konnte kein ausergewöhnliches Jahr feststellen.
 
+a10:Jan
+h02:Jan
 
 ```{r, echo=TRUE}
 # fancy
 # to do
 
+help("fancy")
+ggseasonplot(fancy)
+ggsubseriesplot(fancy)
+
 ```
 
 Your answer:#
-
+Die Sesonale Komponente liegt immer im November und Dezember mit einem Anstieg.
+Die Jahre 1992 und 1993 haben einen besonderst starken Anstieg im Nov. und Dez.
 
 ```{r, echo=TRUE}
 # a10
 # to do
-
+help(a10)
+ggseasonplot(a10)
+ggsubseriesplot(a10)
 ```
 
 Your answer:
-
+Januar ist der Extremwert als Sesonalekomponente, die wiederkehrend ist.
+Von 1991 -  2000 verlaufen die Linen noch eher sehr flach 
+Danach sehr gezackt bzw. sehr unregelmäßig
 
 ```{r, echo=TRUE}
 # h02
 # to do
-
+help(h02)
+ggseasonplot(h02)
+ggsubseriesplot(h02)
 ```
 
 Your answer:
-
+Januar Maximum und Februar Minimum als Sesionale Kompnente, die dann auch über Februar bis zum Januar stätig ansteigt. 
 
 # Exercise 5
 Use the following graphics functions: `autoplot`, `ggseasonplot`, `ggsubseriesplot`, `gglagplot`, `ggAcf` and explore features from the following time series: `hsales`, `usdeaths`, `bricksq`, `sunspotarea`, `gasoline`.
@@ -191,35 +237,20 @@ ggAcf(hsales)
 
 ```{r, echo=TRUE, cache=TRUE}
 # to do
+help(usdeaths)
+autoplot(usdeaths)
+ggseasonplot(usdeaths)
+ggsubseriesplot(usdeaths)
+gglagplot(usdeaths)
+ggAcf(usdeaths)
 
+plot(stl(usdeaths,"periodic"),main="Accidental deaths in USA")
 ```
 
 Your answer:
-
-
-```{r, echo=TRUE, cache=TRUE}
-# to do
-
-```
-
-Your answer:
-
-
-```{r, echo=TRUE, cache=TRUE}
-# to do
-
-```
-
-Your answer:
-
-
-```{r, echo=TRUE, cache=TRUE}
-# to do
-
-```
-
-Your answer:
-
+seasonality: Immer im July ist ein Extremwert über die Jahre zu verseichnen
+cyclicity: keine Aussage, konnte ich nicht 
+and trend: Der Trend über die Jahre bis Mitte des Jahres 1976 abgeflacht und steigt nun wiederan.
 
 # Exercise 6
 
@@ -227,19 +258,27 @@ The `pigs` data shows the monthly total number of pigs slaughtered in Victoria, 
 
 ```{r, echo=TRUE, cache=TRUE}
 # White noise
-set.seed(1711)
-y <- ts(rnorm(50))
-autoplot(y) + ggtitle("White noise")
+#set.seed(1711)
+#y <- ts(rnorm(50))
+#autoplot(y) + ggtitle("White noise")
+
+mypigs <- window(pigs, start=1990)
+autoplot(mypigs)
+ggAcf(mypigs)
 ```
 
 ```{r}
-ggAcf(y)
+ggAcf(mypigs)
 ```
 
 
 ```{r, echo=TRUE, cache=TRUE}
 # todo
+set.seed(mypigs)
+y <- ts(rnorm(mypigs))
+autoplot(y) + ggtitle("White noise")
 
+# White noise
 ```
 
 Your answer:
@@ -251,8 +290,14 @@ Your answer:
 
 ```{r}
 # todo
+ddj <- diff(dj)
+plot(ddj)
+ggAcf(ddj)
 
+set.seed(ddj)
+y <- ts(rnorm(ddj))
+autoplot(y) + ggtitle("White noise")
 ```
 
 Your answer:
-
+Es ist White noise vorhanden.
